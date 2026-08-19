@@ -81,8 +81,7 @@ No synthetic nodes, placeholder properties, or mock entities were introduced.
 1. **Explicit Resource Parity Limitation:**
    * **Local Databases:** Neo4j Community, Memgraph Community, FalkorDB, and Apache AGE were each constrained to **0.5 vCPU / 512 MB RAM** using Docker cgroups.
    * **CognoDB Cloud Free Tier:** Configured to its advertised specification of **0.5 vCPU / 256 MB RAM / 1 GB disk** (Region: `us-east4`).
-   * **Imperfect Hardware Parity:** Perfect hardware parity was not possible. The four local databases were constrained to 0.5 vCPU / 512 MB RAM using Docker cgroups, while CognoDB Cloud's advertised free tier provides 0.5 vCPU / 256 MB RAM / 1 GB disk. This difference is an explicit methodological limitation and is disclosed rather than hidden.
-   * **Non-Observable Cloud Hypervisor:** CognoDB Cloud's underlying physical CPU, memory, and storage resources are not independently observable from the client. The comparison uses the closest practical resource configuration available for the selected deployments.
+   * **Imperfect Hardware Parity:** Perfect hardware parity was not possible because the CognoDB free tier provides 256 MB RAM while the locally self-hosted comparison databases were constrained to 512 MB RAM. This limitation is disclosed rather than hidden. CognoDB Cloud's underlying physical resources are not independently observable. The comparison uses the closest practical resource configuration available for the selected deployments.
 2. **Network Transport Difference:**
    * Local databases communicated over localhost loopback sockets (sub-millisecond RTT).
    * CognoDB Cloud was accessed over TLS 1.3 across the public Internet to GCP `us-east4` (~270.86 ms baseline RTT).
