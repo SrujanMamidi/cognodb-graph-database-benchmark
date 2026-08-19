@@ -1,0 +1,12 @@
+[project]
+name = "cognodb-benchmark"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "falkordb>=1.7.1",
+    "neo4j>=5,<6",
+    "psycopg2-binary>=2.9.12",
+    "python-dotenv>=1.2.3",
+]

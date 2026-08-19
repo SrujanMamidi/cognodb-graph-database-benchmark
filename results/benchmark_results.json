@@ -1,0 +1,401 @@
+{
+  "metadata": {
+    "dataset": "Stanford SNAP cit-HepPh",
+    "nodes": 34546,
+    "relationships": 421578,
+    "resource_configuration": {
+      "neo4j": "0.5 vCPU / 512 MB RAM (Docker cgroups)",
+      "memgraph": "0.5 vCPU / 512 MB RAM (Docker cgroups)",
+      "falkordb": "0.5 vCPU / 512 MB RAM (Docker cgroups)",
+      "apache_age": "0.5 vCPU / 512 MB RAM (Docker cgroups)",
+      "cognodb_cloud": "~0.5 vCPU / 512 MB RAM (Configured Cloud Specification, us-east4)"
+    },
+    "timestamp": "2026-08-19 10:52:58 UTC"
+  },
+  "databases": {
+    "Neo4j": {
+      "Q1": {
+        "count": 100,
+        "p50_ms": 14.003,
+        "p95_ms": 100.658,
+        "min_ms": 5.987,
+        "max_ms": 1288.901,
+        "mean_ms": 62.128,
+        "stddev_ms": 131.295
+      },
+      "Q2": {
+        "count": 100,
+        "p50_ms": 11.576,
+        "p95_ms": 98.045,
+        "min_ms": 5.112,
+        "max_ms": 220.84,
+        "mean_ms": 42.007,
+        "stddev_ms": 43.156
+      },
+      "Q3": {
+        "count": 100,
+        "p50_ms": 7.485,
+        "p95_ms": 98.273,
+        "min_ms": 4.058,
+        "max_ms": 793.553,
+        "mean_ms": 39.856,
+        "stddev_ms": 87.331
+      },
+      "Q4": {
+        "count": 100,
+        "p50_ms": 7.367,
+        "p95_ms": 96.521,
+        "min_ms": 4.595,
+        "max_ms": 5232.088,
+        "mean_ms": 94.057,
+        "stddev_ms": 518.095
+      },
+      "Q5": {
+        "count": 100,
+        "p50_ms": 5.466,
+        "p95_ms": 74.931,
+        "min_ms": 4.389,
+        "max_ms": 86.512,
+        "mean_ms": 16.041,
+        "stddev_ms": 23.429
+      },
+      "Q6": {
+        "count": 100,
+        "p50_ms": 2688.301,
+        "p95_ms": 3297.857,
+        "min_ms": 1894.415,
+        "max_ms": 4899.646,
+        "mean_ms": 2622.543,
+        "stddev_ms": 563.699
+      },
+      "Q7": {
+        "count": 1000,
+        "p50_ms": 362.312,
+        "p95_ms": 1307.673,
+        "min_ms": 9.294,
+        "max_ms": 2403.135,
+        "mean_ms": 483.969,
+        "stddev_ms": 388.496,
+        "qps": 40.87,
+        "total_wall_sec": 24.47,
+        "errors": 0,
+        "canonical_cites_preserved": true,
+        "temp_cites_remaining": 0
+      },
+      "Q5_plan": {
+        "indexed_property": "Paper(id)",
+        "index_type": "Uniqueness constraint (paper_id_unique)",
+        "query_plan_evidence": "{'args': {'planner-impl': 'IDP', 'Details': 'id', 'planner-version': '2026.06.0', 'string-representation': 'Cypher 25\\n\\nPlanner COST\\n\\nRuntime SLOTTED\\n\\nRuntime version 2026.06.0\\n\\n+----------------------+----+------------------------------------------------+----------------+\\n| Operator             | Id | Details                                        | Estimated Rows |\\n+----------------------+----+------------------------------------------------+----------------+\\n| +ProduceResults      |  0 | id                                             |              1 |\\n| |                    +----+------------------------------------------------+----------------+\\n| +Projection          |  1 | cache[p.id] AS id                              |              1 |\\n| |                    +----+------------------------------------------------+----------------+\\n| +NodeUniqueIndexSeek |  2 | UNIQUE p:Paper(id) WHERE id = $id, cache[p.id] |              1 |\\n+----------------------+----+------------------------------------------------+----------------+\\n\\nTotal database accesses: ?\\n', 'runtime-version': '2026.06.0', 'runtime': 'SLOTTED', 'Id': 0, 'runtime-impl': 'SLOTTED', 'EstimatedRows': 1.0, 'planner': 'COST', 'version': '25'}, 'children': [{'args': {'EstimatedRows': 1.0, 'Details': 'cache[p.id] AS id', 'Id': 1}, 'children': [{'args': {'EstimatedRows': 1.0, 'Details': 'UNIQUE p:Paper(id) WHERE id = $id, cache[p.id]', 'Id': 2}, 'identifiers': ['p'], 'operatorType': 'NodeUniqueIndexSeek@neo4j'}], 'identifiers': ['p', 'id'], 'operatorType': 'Projection@neo4j'}], 'identifiers': ['p', 'id'], 'operatorType': 'ProduceResults@neo4j'}"
+      }
+    },
+    "Memgraph": {
+      "Q1": {
+        "count": 100,
+        "p50_ms": 4.841,
+        "p95_ms": 33.397,
+        "min_ms": 2.814,
+        "max_ms": 62.434,
+        "mean_ms": 8.696,
+        "stddev_ms": 11.426
+      },
+      "Q2": {
+        "count": 100,
+        "p50_ms": 3.784,
+        "p95_ms": 13.19,
+        "min_ms": 2.586,
+        "max_ms": 31.596,
+        "mean_ms": 5.451,
+        "stddev_ms": 4.895
+      },
+      "Q3": {
+        "count": 100,
+        "p50_ms": 4.613,
+        "p95_ms": 31.982,
+        "min_ms": 2.608,
+        "max_ms": 58.449,
+        "mean_ms": 8.354,
+        "stddev_ms": 10.128
+      },
+      "Q4": {
+        "count": 100,
+        "p50_ms": 3.585,
+        "p95_ms": 19.407,
+        "min_ms": 2.307,
+        "max_ms": 30.587,
+        "mean_ms": 6.049,
+        "stddev_ms": 5.67
+      },
+      "Q5": {
+        "count": 100,
+        "p50_ms": 4.972,
+        "p95_ms": 43.078,
+        "min_ms": 2.714,
+        "max_ms": 67.34,
+        "mean_ms": 11.826,
+        "stddev_ms": 13.663
+      },
+      "Q6": {
+        "count": 100,
+        "p50_ms": 990.49,
+        "p95_ms": 1268.978,
+        "min_ms": 820.999,
+        "max_ms": 1603.619,
+        "mean_ms": 1021.826,
+        "stddev_ms": 132.037
+      },
+      "Q7": {
+        "count": 1000,
+        "p50_ms": 109.18,
+        "p95_ms": 316.352,
+        "min_ms": 3.182,
+        "max_ms": 1038.309,
+        "mean_ms": 146.518,
+        "stddev_ms": 111.684,
+        "qps": 133.67,
+        "total_wall_sec": 7.481,
+        "errors": 0,
+        "canonical_cites_preserved": true,
+        "temp_cites_remaining": 0
+      },
+      "Q5_plan": {
+        "indexed_property": "Paper(id)",
+        "index_type": "Label+property index",
+        "query_plan_evidence": "[{'QUERY PLAN': ' * Produce {id}'}, {'QUERY PLAN': ' * ScanAllByLabelProperties (p :Paper {id})'}, {'QUERY PLAN': ' * Once'}]"
+      }
+    },
+    "FalkorDB": {
+      "Q1": {
+        "count": 100,
+        "p50_ms": 3.992,
+        "p95_ms": 7.283,
+        "min_ms": 2.902,
+        "max_ms": 29.339,
+        "mean_ms": 4.675,
+        "stddev_ms": 2.836
+      },
+      "Q2": {
+        "count": 100,
+        "p50_ms": 4.1,
+        "p95_ms": 8.291,
+        "min_ms": 2.698,
+        "max_ms": 15.37,
+        "mean_ms": 4.533,
+        "stddev_ms": 1.775
+      },
+      "Q3": {
+        "count": 100,
+        "p50_ms": 4.098,
+        "p95_ms": 6.431,
+        "min_ms": 2.677,
+        "max_ms": 13.672,
+        "mean_ms": 4.477,
+        "stddev_ms": 1.421
+      },
+      "Q4": {
+        "count": 100,
+        "p50_ms": 3.139,
+        "p95_ms": 4.68,
+        "min_ms": 2.399,
+        "max_ms": 7.178,
+        "mean_ms": 3.331,
+        "stddev_ms": 0.771
+      },
+      "Q5": {
+        "count": 100,
+        "p50_ms": 3.28,
+        "p95_ms": 5.233,
+        "min_ms": 2.442,
+        "max_ms": 7.66,
+        "mean_ms": 3.508,
+        "stddev_ms": 0.869
+      },
+      "Q6": {
+        "count": 100,
+        "p50_ms": 891.745,
+        "p95_ms": 1199.686,
+        "min_ms": 701.902,
+        "max_ms": 1475.965,
+        "mean_ms": 919.942,
+        "stddev_ms": 153.146
+      },
+      "Q7": {
+        "count": 1000,
+        "p50_ms": 55.909,
+        "p95_ms": 282.934,
+        "min_ms": 2.825,
+        "max_ms": 501.131,
+        "mean_ms": 77.633,
+        "stddev_ms": 84.556,
+        "qps": 65.0,
+        "total_wall_sec": 15.384,
+        "errors": 0,
+        "canonical_cites_preserved": true,
+        "temp_cites_remaining": 0
+      },
+      "Q5_plan": {
+        "indexed_property": "Paper(id)",
+        "index_type": "Label index (Paper.id)",
+        "query_plan_evidence": "Results\n    Project\n        Node By Index Scan | (p:Paper)"
+      }
+    },
+    "Apache AGE": {
+      "Q1": {
+        "count": 100,
+        "p50_ms": 3.952,
+        "p95_ms": 11.178,
+        "min_ms": 2.488,
+        "max_ms": 177.191,
+        "mean_ms": 7.737,
+        "stddev_ms": 19.271
+      },
+      "Q2": {
+        "count": 100,
+        "p50_ms": 6.359,
+        "p95_ms": 51.819,
+        "min_ms": 3.85,
+        "max_ms": 208.901,
+        "mean_ms": 14.405,
+        "stddev_ms": 24.307
+      },
+      "Q3": {
+        "count": 100,
+        "p50_ms": 186.947,
+        "p95_ms": 399.265,
+        "min_ms": 95.097,
+        "max_ms": 1302.419,
+        "mean_ms": 194.164,
+        "stddev_ms": 144.829
+      },
+      "Q4": {
+        "count": 100,
+        "p50_ms": 2.39,
+        "p95_ms": 9.302,
+        "min_ms": 1.715,
+        "max_ms": 19.35,
+        "mean_ms": 3.21,
+        "stddev_ms": 2.593
+      },
+      "Q5": {
+        "count": 100,
+        "p50_ms": 81.891,
+        "p95_ms": 99.397,
+        "min_ms": 30.947,
+        "max_ms": 109.806,
+        "mean_ms": 71.987,
+        "stddev_ms": 23.745
+      },
+      "Q6": {
+        "count": 100,
+        "p50_ms": 4289.275,
+        "p95_ms": 5816.97,
+        "min_ms": 3713.863,
+        "max_ms": 7402.378,
+        "mean_ms": 4469.079,
+        "stddev_ms": 671.688
+      },
+      "Q7": {
+        "count": 1000,
+        "p50_ms": 492.203,
+        "p95_ms": 1113.951,
+        "min_ms": 8.118,
+        "max_ms": 3206.279,
+        "mean_ms": 536.464,
+        "stddev_ms": 367.666,
+        "qps": 11.86,
+        "total_wall_sec": 84.3,
+        "errors": 0,
+        "canonical_cites_preserved": true,
+        "temp_cites_remaining": 0
+      },
+      "Q5_plan": {
+        "indexed_property": "Paper(properties)",
+        "index_type": "GIN index (paper_props_gin)",
+        "query_plan_evidence": "Seq Scan on \"Paper\" p  (cost=0.00..807.49 rows=173 width=32) (actual time=28.984..28.986 rows=0.00 loops=1)\n  Filter: (agtype_access_operator(VARIADIC ARRAY[properties, '\"id\"'::agtype]) = '1000'::agtype)\n  Rows Removed by Filter: 34546\n  Buffers: shared hit=288\nPlanning:\n  Buffers: shared hit=88\nPlanning Time: 0.698 ms\nExecution Time: 29.196 ms"
+      }
+    },
+    "CognoDB Cloud": {
+      "baseline_rtt": {
+        "count": 20,
+        "p50_ms": 270.864,
+        "p95_ms": 326.035,
+        "min_ms": 269.281,
+        "max_ms": 487.832,
+        "mean_ms": 284.208,
+        "stddev_ms": 47.818
+      },
+      "Q1": {
+        "count": 100,
+        "p50_ms": 270.707,
+        "p95_ms": 283.104,
+        "min_ms": 269.14,
+        "max_ms": 344.414,
+        "mean_ms": 273.913,
+        "stddev_ms": 11.025
+      },
+      "Q2": {
+        "count": 100,
+        "p50_ms": 272.525,
+        "p95_ms": 297.775,
+        "min_ms": 269.234,
+        "max_ms": 397.436,
+        "mean_ms": 277.369,
+        "stddev_ms": 15.272
+      },
+      "Q3": {
+        "count": 100,
+        "p50_ms": 273.162,
+        "p95_ms": 311.824,
+        "min_ms": 269.525,
+        "max_ms": 329.426,
+        "mean_ms": 278.311,
+        "stddev_ms": 13.051
+      },
+      "Q4": {
+        "count": 100,
+        "p50_ms": 270.821,
+        "p95_ms": 288.617,
+        "min_ms": 269.423,
+        "max_ms": 525.555,
+        "mean_ms": 275.348,
+        "stddev_ms": 25.824
+      },
+      "Q5": {
+        "count": 100,
+        "p50_ms": 271.807,
+        "p95_ms": 295.018,
+        "min_ms": 269.129,
+        "max_ms": 344.051,
+        "mean_ms": 276.389,
+        "stddev_ms": 12.228
+      },
+      "Q6": {
+        "count": 100,
+        "p50_ms": 2400.919,
+        "p95_ms": 2602.393,
+        "min_ms": 2247.353,
+        "max_ms": 2797.411,
+        "mean_ms": 2430.032,
+        "stddev_ms": 99.849
+      },
+      "Q7": {
+        "count": 1000,
+        "p50_ms": 265.865,
+        "p95_ms": 430.219,
+        "min_ms": 245.368,
+        "max_ms": 1437.986,
+        "mean_ms": 299.743,
+        "stddev_ms": 162.027,
+        "qps": 66.03,
+        "total_wall_sec": 15.145,
+        "errors": 0,
+        "canonical_cites_preserved": true,
+        "temp_cites_remaining": 0
+      },
+      "Q5_plan": {
+        "indexed_property": "Paper(id)",
+        "index_type": "Uniqueness constraint (paper_id_unique)",
+        "query_plan_evidence": "{'children': [{'details': ':Paper(id)', 'estimatedRows': 0.0, 'operatorType': 'NodeIndexSeek'}], 'estimatedRows': 0.0, 'operatorType': 'ProduceResults'}"
+      }
+    }
+  }
+}
