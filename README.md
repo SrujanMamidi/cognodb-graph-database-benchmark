@@ -357,4 +357,4 @@ This benchmark provides a rigorous, empirical baseline comparing five graph data
 * **Apache AGE:** Offered strong relational synergy and fast single-record lookups (Q4 p50: 2.390 ms), with trade-offs during recursive joins and write contention.
 * **CognoDB Cloud:** Demonstrated solid cloud-native graph analytical capability and multi-client concurrency (66.03 QPS), with client-measured response times reflecting cloud TLS transport latency.
 
-All raw metrics are preserved in [`results/benchmark_results.json`](file:///c:/Users/Srujan%20Mamidi/Desktop/cognodb-benchmark/results/benchmark_results.json).
+All raw metrics are preserved in [`results/benchmark_results.json`](results/benchmark_results.json).
