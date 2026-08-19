@@ -16,9 +16,12 @@ load_dotenv()
 AGE_HOST = os.getenv("AGE_HOST", "localhost")
 AGE_PORT = int(os.getenv("AGE_PORT", "5432"))
 AGE_USER = os.getenv("AGE_USER", "postgres")
-AGE_PASSWORD = os.getenv("AGE_PASSWORD", "AgeBench2026!")
+AGE_PASSWORD = os.getenv("AGE_PASSWORD")
 AGE_DBNAME = os.getenv("AGE_DBNAME", "postgres")
 AGE_GRAPH = os.getenv("AGE_GRAPH", "benchmark")
+
+if not AGE_PASSWORD:
+    raise ValueError("AGE_PASSWORD must be configured in your .env file.")
 
 
 def get_age_connection():

@@ -63,7 +63,7 @@ No synthetic nodes, placeholder properties, or mock entities were introduced.
 | **Memgraph Community** | **0.5 vCPU** (`500,000,000 nCPUs`) | **512 MB** (`536,870,912 B`) | 1,024 MB | ~137.6 MiB | In-Memory Engine |
 | **FalkorDB** | **0.5 vCPU** (`500,000,000 nCPUs`) | **512 MB** (`536,870,912 B`) | 1,024 MB | ~231.1 MiB | In-Memory (GraphBLAS) |
 | **Apache AGE** | **0.5 vCPU** (`500,000,000 nCPUs`) | **512 MB** (`536,870,912 B`) | 1,024 MB | ~190.0 MiB | PostgreSQL 18 Relational Tables |
-| **CognoDB Cloud** | **~0.5 vCPU** (advertised burst) | **256 MB–512 MB** (advertised tier) | Managed | *Not observable* | Cloud Managed (1 GiB quota) |
+| **CognoDB Cloud** | **0.5 vCPU** (advertised burst) | **256 MB RAM** (advertised free tier) | Managed | *Not observable* | Cloud Managed (1 GiB quota) |
 
 * **Host Environment:** Windows 11 Host, Python 3.12 (`uv` virtual environment).
 * **Docker Resource Enforcement:** Implemented via Linux cgroups (`docker update --cpus 0.5 --memory 512m --memory-swap 1024m`).
@@ -79,9 +79,9 @@ No synthetic nodes, placeholder properties, or mock entities were introduced.
 
 ### Documented Resource Limitations & Caveats
 1. **Resource Parity Limitation (Not Perfect Hardware Parity):**
-   * **CognoDB Free Tier:** Advertised specification of approximately **0.5 vCPU / 256 MB–512 MB RAM / 1 GB disk**.
+   * **CognoDB Free Tier:** Advertised specification of **0.5 vCPU / 256 MB RAM / 1 GB disk**.
    * **Local Databases:** Configured strictly to **0.5 vCPU / 512 MB RAM** Docker cgroup limits.
-   * **Non-Observable Cloud Hypervisor:** This comparison has a documented resource-parity limitation and is **not** presented as perfectly identical physical hardware. The underlying physical CPU, hypervisor CPU scheduling, and physical memory bus of CognoDB Cloud are managed remotely by the provider and are not independently observable.
+   * **Non-Observable Cloud Hypervisor:** This comparison has a documented resource-parity limitation and is **not** presented as perfectly identical physical hardware. The underlying physical CPU, hypervisor CPU scheduling, and physical memory bus of CognoDB Cloud are managed remotely by the provider and are not independently observable. The comparison uses the closest practical resource configuration available for the selected deployments.
 2. **Network Transport Difference:**
    * Local databases communicated over localhost loopback sockets (sub-millisecond RTT).
    * CognoDB Cloud was accessed over TLS 1.3 across the public Internet to GCP `us-east4` (~270.86 ms baseline RTT).
@@ -298,12 +298,29 @@ cp .env.example .env
 ```
 
 ### Step 2: Launch Docker Containers with 0.5 CPU / 512 MB RAM Constraints
+
+Supply your container passwords via environment variables (matching your `.env` configuration):
+
+**Bash:**
 ```bash
-# Launch containers
-docker run -d --name neo4j-benchmark --cpus="0.5" --memory="512m" -p 7687:7687 -e NEO4J_AUTH=neo4j/Neo4jBench2026! neo4j:latest
+export NEO4J_PASSWORD="<your-neo4j-password>"
+export AGE_PASSWORD="<your-age-password>"
+
+docker run -d --name neo4j-benchmark --cpus="0.5" --memory="512m" -p 7687:7687 -e NEO4J_AUTH=neo4j/${NEO4J_PASSWORD} neo4j:latest
 docker run -d --name memgraph-benchmark --cpus="0.5" --memory="512m" -p 7688:7687 memgraph/memgraph:latest
 docker run -d --name falkordb-benchmark --cpus="0.5" --memory="512m" -p 6379:6379 falkordb/falkordb:latest
-docker run -d --name age-benchmark --cpus="0.5" --memory="512m" -p 5432:5432 -e POSTGRES_PASSWORD=AgeBench2026! apache/age:latest
+docker run -d --name age-benchmark --cpus="0.5" --memory="512m" -p 5432:5432 -e POSTGRES_PASSWORD=${AGE_PASSWORD} apache/age:latest
+```
+
+**PowerShell:**
+```powershell
+$env:NEO4J_PASSWORD="<your-neo4j-password>"
+$env:AGE_PASSWORD="<your-age-password>"
+
+docker run -d --name neo4j-benchmark --cpus="0.5" --memory="512m" -p 7687:7687 -e NEO4J_AUTH=neo4j/$env:NEO4J_PASSWORD neo4j:latest
+docker run -d --name memgraph-benchmark --cpus="0.5" --memory="512m" -p 7688:7687 memgraph/memgraph:latest
+docker run -d --name falkordb-benchmark --cpus="0.5" --memory="512m" -p 6379:6379 falkordb/falkordb:latest
+docker run -d --name age-benchmark --cpus="0.5" --memory="512m" -p 5432:5432 -e POSTGRES_PASSWORD=$env:AGE_PASSWORD apache/age:latest
 ```
 
 ### Step 3: Run Ingestion Loaders

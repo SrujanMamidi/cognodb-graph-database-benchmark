@@ -15,7 +15,10 @@ load_dotenv()
 
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME", "neo4j")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "Neo4jBench2026!")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+
+if not NEO4J_PASSWORD:
+    raise ValueError("NEO4J_PASSWORD must be configured in your .env file.")
 
 QUERIES = {
     "Q1": "MATCH (p:Paper {id: $id})-[:CITES]->(m:Paper) RETURN count(m) AS count",
