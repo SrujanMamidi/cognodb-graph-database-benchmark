@@ -1,36 +1,30 @@
-# Environment variables and secrets
 .env
-.env.local
-.env.*.local
-*.pem
-*.key
-*.cert
+.env.*
+!.env.example
 
-# Python virtual environment and bytecode
 .venv/
-env/
 venv/
+env/
+
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
+
 .pytest_cache/
 .mypy_cache/
-.ruff_cache/
 
-# IDE and OS files
 .vscode/
 .idea/
+
+*.log
+*.tmp
+*.temp
+
+scratch/
+reports/
+
+*.pdf
+*.ppt
+*.pptx
+
 .DS_Store
 Thumbs.db
-
-# Build and distribution artifacts
-build/
-dist/
-*.egg-info/
-
-# Temporary / Scratch files
-scratch/
-tmp/
-*.tmp
-*.log
